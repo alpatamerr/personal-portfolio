@@ -21,3 +21,7 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Personal CVs (keep out of repo)
+/AlpAtamerCV.pdf
+
