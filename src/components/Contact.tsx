@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Mail, Phone, Linkedin, Github, Send, MapPin, Calendar, Globe } from 'lucide-react';
 import type { ContactFormData } from '../types';
 
@@ -9,6 +9,10 @@ import type { ContactFormData } from '../types';
  * - Minimum time-on-page check (3s)
  * - LocalStorage throttle (default 3 sends / hour)
  * - Submit button disabling while sending
+ *
+ * Added client-side validation to prevent empty/trivial submissions:
+ * - Native form.checkValidity() + reportValidity()
+ * - Trimmed-field checks and minimum message length
  */
 
 export default function Contact() {
@@ -34,32 +38,60 @@ export default function Contact() {
   const ALLOWED_PER_HOUR = 3;
   const THROTTLE_KEY = 'contact_form_sends';
 
+  // Form ref for native validation
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  // Simple email sanity check (still rely on browser's type="email" too)
+  const isEmailValid = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email.trim());
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic configuration guard
-    if (!CONTACT_FORM_ENDPOINT || CONTACT_FORM_ENDPOINT.includes('REPLACE_WITH')) {
-      alert(
-        'Contact endpoint not configured. Set VITE_CONTACT_FORM_ENDPOINT in your .env.local to your Formspree endpoint (see .env.example).'
-      );
+    // 1) Native HTML5 validation (required fields, email format, etc.)
+    if (formRef.current && !formRef.current.checkValidity()) {
+      formRef.current.reportValidity();
       return;
     }
 
-    // Honeypot: if filled, likely a bot — silently drop
+    // Trim values for stronger checks
+    const name = formData.name?.trim() || '';
+    const email = formData.email?.trim() || '';
+    const subject = formData.subject?.trim() || '';
+    const message = formData.message?.trim() || '';
+
+    // 2) Additional client-side checks to prevent empty/trivial submissions
+    if (!name || !email || !subject || !message) {
+      alert('Please fill in all required fields (no empty values).');
+      return;
+    }
+
+    if (!isEmailValid(email)) {
+      alert('Please provide a valid email address.');
+      return;
+    }
+
+    const MIN_MESSAGE_LENGTH = 10;
+    if (message.length < MIN_MESSAGE_LENGTH) {
+      alert(`Please provide a longer message (at least ${MIN_MESSAGE_LENGTH} characters).`);
+      return;
+    }
+
+    // 3) Honeypot: if filled, likely a bot — silently drop
     if (website.trim() !== '') {
-      // Optionally log or silently return
       console.warn('Honeypot triggered — likely bot submission ignored.');
       return;
     }
 
-    // Minimum time-on-page check (prevent instant automated submits)
+    // 4) Minimum time-on-page check (prevent instant automated submits)
     const MIN_MILLIS = 3000; // 3 seconds
     if (Date.now() - mountedAt < MIN_MILLIS) {
       alert('Please take a moment to complete the form before submitting.');
       return;
     }
 
-    // Local per-browser throttling (simple)
+    // 5) Local per-browser throttling (simple)
     try {
       const stored = JSON.parse(localStorage.getItem(THROTTLE_KEY) || '[]') as number[];
       const windowStart = Date.now() - 60 * 60 * 1000; // 1 hour
@@ -76,14 +108,22 @@ export default function Contact() {
       console.warn('Throttle check failed', err);
     }
 
+    // Basic configuration guard
+    if (!CONTACT_FORM_ENDPOINT || CONTACT_FORM_ENDPOINT.includes('REPLACE_WITH')) {
+      alert(
+        'Contact endpoint not configured. Set VITE_CONTACT_FORM_ENDPOINT in your .env.local to your Formspree endpoint (see .env.example).'
+      );
+      return;
+    }
+
     setIsSubmitting(true);
 
     const payload = {
-      name: formData.name,
-      email: formData.email,
-      subject: formData.subject,
-      message: formData.message,
-      _subject: `Website contact: ${formData.subject || 'No subject'}`,
+      name,
+      email,
+      subject,
+      message,
+      _subject: `Website contact: ${subject || 'No subject'}`,
     };
 
     try {
@@ -240,7 +280,7 @@ export default function Contact() {
           </div>
 
           <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-            <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5" noValidate>
               {/* Honeypot (visually hidden) */}
               <div
                 style={{
