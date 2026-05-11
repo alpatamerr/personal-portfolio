@@ -25,6 +25,7 @@ function getDeviconClass(skillName: string): string | null {
     express: 'devicon-express-original',
     'express.js': 'devicon-express-original',
     flask: 'devicon-flask-original',
+    fastapi: 'devicon-fastapi-plain colored',
     docker: 'devicon-docker-plain colored',
     kubernetes: 'devicon-kubernetes-plain colored',
     aws: 'devicon-amazonwebservices-plain colored',
@@ -64,6 +65,7 @@ function getDeviconClass(skillName: string): string | null {
   if (key.includes('github')) return 'devicon-github-original';
   if (key.includes('bash')) return 'devicon-bash-plain';
   if (key.includes('flask')) return 'devicon-flask-original';
+  if (key.includes('fastapi')) return 'devicon-fastapi-plain colored';
   if (key.includes('asana')) return 'devicon-asana-plain colored';
   if (key.includes('rest')) return 'devicon-postman-plain colored';
   return null;
