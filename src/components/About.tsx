@@ -11,19 +11,22 @@ export default function About() {
         <div className="max-w-4xl mx-auto">
           <div className="prose prose-lg dark:prose-invert mb-12 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="mb-6">
-              I build software that actually works. Started my career in International Relations thinking I'd do policy work, then stumbled into tech through business analysis and realized I'd rather ship code than talk about it. Now I do both, but mostly the code part.
+              Recent MSc Computer Science graduate from the University of Birmingham with a unique
+              background in International Relations from Bilkent University. My journey into tech
+              began through technical business analysis work, where I discovered a passion for
+              solving complex problems through code.
             </p>
 
             <p className="mb-6">
-              At Draftwise I engineered data pipelines and dashboards that moved the needle for real stakeholders. My dissertation was an AI coaching app that actually helped runners train smarter. I've shipped full-stack projects, optimized database queries, built real-time systems. The work that sticks is work that solves something tangible.
-            </p>
-
-            <p className="mb-6">
-              I think differently because I came up through multiple disciplines. That makes me useful in messy problems where the technical and business sides need to talk to each other. I can work across the entire stack without losing the plot—React, Node, Python, PostgreSQL, the cloud infrastructure. Pick your poison, I'll build it clean.
+              I specialize in full-stack development with React, Node.js, Python, and PostgreSQL,
+              with hands-on experience building production-ready applications that integrate AI/ML
+              capabilities and third-party APIs. My diverse background gives me a unique perspective
+              on translating business requirements into effective technical solutions.
             </p>
 
             <p>
-              UK based with work authorization. Looking for teams that care about writing good code and shipping fast.
+              Currently based in the UK with full work authorization, I'm seeking opportunities to
+              contribute to innovative teams building impactful software.
             </p>
           </div>
 
