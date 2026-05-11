@@ -26,6 +26,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Node.js', level: 80 },
       { name: 'Express.js', level: 80 },
       { name: 'Flask', level: 75 },
+      { name: 'FastAPI', level: 70 },
       { name: 'REST APIs', level: 85 },
     ],
   },
@@ -40,6 +41,7 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: 'Git/GitHub', level: 85 },
       { name: 'Docker', level: 70 },
+      { name: 'AWS', level: 65 },
       { name: 'Jest', level: 65 },
       { name: 'Asana', level: 80 },
     ],
