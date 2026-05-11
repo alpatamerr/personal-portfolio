@@ -95,7 +95,7 @@ export const projects: Project[] = [
   {
     title: 'Simple Social',
     emoji: '📱',
-    description: 'FastAPI + Streamlit social media application featuring user authentication, media uploads with ImageKit CDN integration, and a real-time social feed.',
+    description: 'Personal Project - FastAPI + Streamlit social media application featuring user authentication, media uploads with ImageKit CDN integration, and a real-time social feed.',
     features: [
       'JWT-based user authentication with FastAPI-Users',
       'Image and video uploads with ImageKit CDN integration',
