@@ -40,6 +40,7 @@ export const skillCategories: SkillCategory[] = [
     title: 'Tools & Technologies',
     skills: [
       { name: 'Git/GitHub', level: 85 },
+      { name: 'GitHub Actions', level: 70 },
       { name: 'Docker', level: 70 },
       { name: 'AWS', level: 65 },
       { name: 'Jest', level: 65 },
