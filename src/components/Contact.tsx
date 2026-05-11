@@ -1,24 +1,8 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Mail, Phone, Linkedin, Github, Send, MapPin, Calendar, Globe } from 'lucide-react';
 import type { ContactFormData } from '../types';
 
-/**
- * Contact form that posts JSON to a Formspree endpoint (VITE_CONTACT_FORM_ENDPOINT).
- * Includes lightweight anti-bot protections:
- * - Honeypot hidden field ("website")
- * - Minimum time-on-page check (3s)
- * - LocalStorage throttle (default 3 sends / hour)
- * - Submit button disabling while sending
- *
- * Added client-side validation to prevent empty/trivial submissions:
- * - Native form.checkValidity() + reportValidity()
- * - Trimmed-field checks and minimum message length
- */
-
 export default function Contact() {
-  // Read Formspree endpoint from Vite env (VITE_ prefix required)
-  const CONTACT_FORM_ENDPOINT = import.meta.env.VITE_CONTACT_FORM_ENDPOINT as string | undefined;
-
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -26,148 +10,36 @@ export default function Contact() {
     message: '',
   });
 
-  // honeypot field state (bots often fill extra fields)
-  const [website, setWebsite] = useState('');
-
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Record when the form was mounted so we can block instant submissions
-  const [mountedAt] = useState(() => Date.now());
-
-  // Throttle configuration: adjust as needed
-  const ALLOWED_PER_HOUR = 3;
-  const THROTTLE_KEY = 'contact_form_sends';
-
-  // Form ref for native validation
-  const formRef = useRef<HTMLFormElement | null>(null);
-
-  // Simple email sanity check (still rely on browser's type="email" too)
-  const isEmailValid = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email.trim());
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // 1) Native HTML5 validation (required fields, email format, etc.)
-    if (formRef.current && !formRef.current.checkValidity()) {
-      formRef.current.reportValidity();
-      return;
-    }
-
-    // Trim values for stronger checks
-    const name = formData.name?.trim() || '';
-    const email = formData.email?.trim() || '';
-    const subject = formData.subject?.trim() || '';
-    const message = formData.message?.trim() || '';
-
-    // 2) Additional client-side checks to prevent empty/trivial submissions
-    if (!name || !email || !subject || !message) {
-      alert('Please fill in all required fields (no empty values).');
-      return;
-    }
-
-    if (!isEmailValid(email)) {
-      alert('Please provide a valid email address.');
-      return;
-    }
-
-    const MIN_MESSAGE_LENGTH = 10;
-    if (message.length < MIN_MESSAGE_LENGTH) {
-      alert(`Please provide a longer message (at least ${MIN_MESSAGE_LENGTH} characters).`);
-      return;
-    }
-
-    // 3) Honeypot: if filled, likely a bot — silently drop
-    if (website.trim() !== '') {
-      console.warn('Honeypot triggered — likely bot submission ignored.');
-      return;
-    }
-
-    // 4) Minimum time-on-page check (prevent instant automated submits)
-    const MIN_MILLIS = 3000; // 3 seconds
-    if (Date.now() - mountedAt < MIN_MILLIS) {
-      alert('Please take a moment to complete the form before submitting.');
-      return;
-    }
-
-    // 5) Local per-browser throttling (simple)
-    try {
-      const stored = JSON.parse(localStorage.getItem(THROTTLE_KEY) || '[]') as number[];
-      const windowStart = Date.now() - 60 * 60 * 1000; // 1 hour
-      const recent = stored.filter((t) => t > windowStart);
-
-      if (recent.length >= ALLOWED_PER_HOUR) {
-        alert(
-          'Too many messages sent from this browser recently. Please try again later or email: alpatamer@gmail.com'
-        );
-        return;
-      }
-    } catch (err) {
-      // If localStorage is unavailable or corrupt, continue — throttle is best-effort
-      console.warn('Throttle check failed', err);
-    }
-
-    // Basic configuration guard
-    if (!CONTACT_FORM_ENDPOINT || CONTACT_FORM_ENDPOINT.includes('REPLACE_WITH')) {
-      alert(
-        'Contact endpoint not configured. Set VITE_CONTACT_FORM_ENDPOINT in your .env.local to your Formspree endpoint (see .env.example).'
-      );
-      return;
-    }
-
     setIsSubmitting(true);
 
-    const payload = {
-      name,
-      email,
-      subject,
-      message,
-      _subject: `Website contact: ${subject || 'No subject'}`,
-    };
-
     try {
-      const res = await fetch(CONTACT_FORM_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (res.ok) {
-        // Record send timestamp for throttle
-        try {
-          const stored = JSON.parse(localStorage.getItem(THROTTLE_KEY) || '[]') as number[];
-          const windowStart = Date.now() - 60 * 60 * 1000;
-          const recent = stored.filter((t) => t > windowStart);
-          const updated = [...recent, Date.now()];
-          localStorage.setItem(THROTTLE_KEY, JSON.stringify(updated));
-        } catch (err) {
-          console.warn('Failed to record throttle timestamp', err);
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/contact-form`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify(formData),
         }
+      );
 
-        alert('Thank you — your message was sent. I will get back to you soon.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        // Try parse response for helpful message
-        const data = await res.json().catch(() => null);
-        const msg = data?.error || data?.message || 'Failed to send message.';
-        console.error('Formspree error', data);
+      const result = await response.json();
 
-        // Rate limit detection
-        if (res.status === 429) {
-          alert(
-            "You're sending messages too quickly — please try again later or email me directly at alpatamer@gmail.com."
-          );
-        } else {
-          alert(`Error: ${msg}`);
-        }
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit form');
       }
-    } catch (err) {
-      console.error('Network error', err);
-      alert('Network error — please try again later or email: alpatamer@gmail.com');
+
+      alert('Thank you for your message! I will get back to you soon.');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting your message. Please try again or email me directly at alpatamer@gmail.com');
     } finally {
       setIsSubmitting(false);
     }
@@ -214,96 +86,73 @@ export default function Contact() {
 
             <div className="space-y-4">
               <div className="flex items-start gap-4">
-                <div className="bg-cyan-100 dark:bg-cyan-900 p-3 rounded-lg">
-                  <Mail className="text-cyan-600 dark:text-cyan-400" size={24} />
+                  <div className="bg-cyan-100 dark:bg-cyan-900 p-3 rounded-lg">
+                    <Mail className="text-cyan-600 dark:text-cyan-400" size={24} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Email</p>
+                    <a
+                      href="mailto:alpatamer@gmail.com"
+                      className="text-gray-900 dark:text-white font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                    >
+                      alpatamer@gmail.com
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Email</p>
-                  <a
-                    href="mailto:alpatamer@gmail.com"
-                    className="text-gray-900 dark:text-white font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-                  >
-                    alpatamer@gmail.com
-                  </a>
-                </div>
-              </div>
 
               <div className="flex items-start gap-4">
-                <div className="bg-cyan-100 dark:bg-cyan-900 p-3 rounded-lg">
-                  <Phone className="text-cyan-600 dark:text-cyan-400" size={24} />
+                  <div className="bg-cyan-100 dark:bg-cyan-900 p-3 rounded-lg">
+                    <Phone className="text-cyan-600 dark:text-cyan-400" size={24} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Phone</p>
+                    <a
+                      href="tel:+447832954393"
+                      className="text-gray-900 dark:text-white font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                    >
+                      +44 7832 954 393
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Phone</p>
-                  <a
-                    href="tel:+447832954393"
-                    className="text-gray-900 dark:text-white font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-                  >
-                    +44 7832 954 393
-                  </a>
-                </div>
-              </div>
 
               <div className="flex items-start gap-4">
-                <div className="bg-cyan-100 dark:bg-cyan-900 p-3 rounded-lg">
-                  <Linkedin className="text-cyan-600 dark:text-cyan-400" size={24} />
+                  <div className="bg-cyan-100 dark:bg-cyan-900 p-3 rounded-lg">
+                    <Linkedin className="text-cyan-600 dark:text-cyan-400" size={24} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">LinkedIn</p>
+                    <a
+                      href="https://www.linkedin.com/in/alpatamer/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-900 dark:text-white font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                    >
+                      View Profile
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">LinkedIn</p>
-                  <a
-                    href="https://www.linkedin.com/in/alpatamer/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-900 dark:text-white font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-                  >
-                    View Profile
-                  </a>
-                </div>
-              </div>
 
               <div className="flex items-start gap-4">
-                <div className="bg-cyan-100 dark:bg-cyan-900 p-3 rounded-lg">
-                  <Github className="text-cyan-600 dark:text-cyan-400" size={24} />
+                  <div className="bg-cyan-100 dark:bg-cyan-900 p-3 rounded-lg">
+                    <Github className="text-cyan-600 dark:text-cyan-400" size={24} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">GitHub</p>
+                    <a
+                      href="https://github.com/alpatamerr"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-900 dark:text-white font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+                    >
+                      View Projects
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">GitHub</p>
-                  <a
-                    href="https://github.com/alpatamerr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-900 dark:text-white font-medium hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
-                  >
-                    View Projects
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
 
           <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5" noValidate>
-              {/* Honeypot (visually hidden) */}
-              <div
-                style={{
-                  position: 'absolute',
-                  left: '-10000px',
-                  top: 'auto',
-                  width: '1px',
-                  height: '1px',
-                  overflow: 'hidden',
-                }}
-                aria-hidden="true"
-              >
-                <label htmlFor="website">Website</label>
-                <input
-                  id="website"
-                  name="website"
-                  value={website}
-                  onChange={(e) => setWebsite(e.target.value)}
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
-              </div>
-
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label
                   htmlFor="name"
@@ -318,7 +167,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition-colors"
+                  className="w-full px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition-all text-gray-900 dark:text-white"
                   placeholder="Your name"
                 />
               </div>
@@ -337,7 +186,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition-colors"
+                  className="w-full px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition-all text-gray-900 dark:text-white"
                   placeholder="Your email"
                 />
               </div>
@@ -356,7 +205,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition-colors"
+                  className="w-full px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition-all text-gray-900 dark:text-white"
                   placeholder="What's this about?"
                 />
               </div>
@@ -375,7 +224,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition-colors"
+                  className="w-full px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition-all resize-none text-gray-900 dark:text-white"
                   placeholder="Your message..."
                 ></textarea>
               </div>
@@ -390,7 +239,7 @@ export default function Contact() {
                 ) : (
                   <>
                     <Send size={20} />
-                    <span>Send Message</span>
+                    Send Message
                   </>
                 )}
               </button>
