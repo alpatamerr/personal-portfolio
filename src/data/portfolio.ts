@@ -57,13 +57,13 @@ export const experiences: Experience[] = [
     period: 'May 2024 - Sep 2024',
     description: [
       'Enhanced AI-powered legal tech platform with Python workflows and React components',
-      'Contributed to Python scripts for HubSpot CRM data extraction and PostgreSQL integration',
+      'Contributed to Python scripts for HubSpot CRM data extraction and PostgreSQL integration with AWS services',
       'Built React dashboard components with real-time data updates',
       'Developed reusable components including collapsible panels and interactive charts',
       'Optimized frontend performance with lazy loading and memoization',
       'Collaborated with PM and engineering teams to translate business requirements into software solutions',
     ],
-    techStack: 'Python, React, PostgreSQL, HubSpot API',
+    techStack: 'Python, React, PostgreSQL, HubSpot API, AWS',
   },
   {
     title: 'Research Assistant, Computational Logistics & Data Analysis',
@@ -95,7 +95,7 @@ export const projects: Project[] = [
   {
     title: 'Simple Social',
     emoji: '📱',
-    description: 'Personal Project - FastAPI + Streamlit social media application featuring user authentication, media uploads with ImageKit CDN integration, and a real-time social feed.',
+    description: 'FastAPI + Streamlit social media application featuring user authentication, media uploads with ImageKit CDN integration, and a real-time social feed.',
     features: [
       'JWT-based user authentication with FastAPI-Users',
       'Image and video uploads with ImageKit CDN integration',
