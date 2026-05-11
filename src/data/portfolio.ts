@@ -90,6 +90,21 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
+    title: 'Social Media App',
+    emoji: '📱',
+    description: 'Full-featured social platform with FastAPI backend and Streamlit frontend, featuring secure authentication, media uploads with ImageKit CDN, and a real-time feed.',
+    features: [
+      'FastAPI backend with async SQLite database',
+      'Secure JWT-based user authentication',
+      'Image uploads and storage with ImageKit CDN',
+      'Post creation and feed management',
+      'User profile management and account security',
+      'Environment-based configuration for sensitive data',
+    ],
+    technologies: 'FastAPI, Python, Streamlit, SQLite, ImageKit CDN, JWT',
+    github: 'https://github.com/alpatamerr/Social-Media-App',
+  },
+  {
     title: 'AI-Personalized Running Coach',
     emoji: '🏃',
     description: 'MSc Dissertation Project - Developed a full-stack fitness app integrating Strava API with backend services to manage authentication, run history, and generate adaptive 16-week training plans.',
@@ -102,21 +117,6 @@ export const projects: Project[] = [
     ],
     technologies: 'React, Python, Node.js, Express.js, PostgreSQL, REST API',
     github: 'https://github.com/alpatamerr/AI-Personalized-Running-Coach',
-  },
-  {
-    title: 'Social Media App',
-    emoji: '📱',
-    description: 'Personal Project - Full-featured social platform with FastAPI backend and Streamlit frontend, featuring secure authentication, media uploads with ImageKit CDN, and a real-time feed.',
-    features: [
-      'FastAPI backend with async SQLite database',
-      'Secure JWT-based user authentication',
-      'Image uploads and storage with ImageKit CDN',
-      'Post creation and feed management',
-      'User profile management and account security',
-      'Environment-based configuration for sensitive data',
-    ],
-    technologies: 'FastAPI, Python, Streamlit, SQLite, ImageKit CDN, JWT',
-    github: 'https://github.com/alpatamerr/Social-Media-App',
   },
   {
     title: 'Weather Tracker',
