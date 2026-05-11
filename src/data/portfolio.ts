@@ -92,15 +92,16 @@ export const projects: Project[] = [
   {
     title: 'Social Media App',
     emoji: '📱',
-    description: 'Full-featured social platform with real-time messaging, user profiles, and content sharing capabilities.',
+    description: 'Full-featured social platform with FastAPI backend and Streamlit frontend, featuring secure authentication, media uploads with ImageKit CDN, and a real-time feed.',
     features: [
-      'Real-time messaging and notifications',
-      'User authentication and profile management',
-      'Content feed with like and comment functionality',
-      'User discovery and follow system',
-      'Media upload and storage integration',
+      'FastAPI backend with async SQLite database',
+      'Secure JWT-based user authentication',
+      'Image uploads and storage with ImageKit CDN',
+      'Post creation and feed management',
+      'User profile management and account security',
+      'Environment-based configuration for sensitive data',
     ],
-    technologies: 'React, Node.js, PostgreSQL, WebSockets',
+    technologies: 'FastAPI, Python, Streamlit, SQLite, ImageKit CDN, JWT',
     github: 'https://github.com/alpatamerr/Social-Media-App',
   },
   {
