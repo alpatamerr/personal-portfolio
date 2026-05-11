@@ -92,17 +92,19 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
-    title: 'Social Media App',
+    title: 'Simple Social',
     emoji: '📱',
-    description: 'Full-featured social platform with real-time messaging, user profiles, and content sharing capabilities.',
+    description: 'FastAPI + Streamlit social media application featuring user authentication, media uploads with ImageKit CDN integration, and a real-time social feed.',
     features: [
-      'Real-time messaging and notifications',
-      'User authentication and profile management',
-      'Content feed with like and comment functionality',
-      'User discovery and follow system',
-      'Media upload and storage integration',
+      'JWT-based user authentication with FastAPI-Users',
+      'Image and video uploads with ImageKit CDN integration',
+      'Real-time social feed displaying posts from all users',
+      'Dynamic image transformations with caption overlays',
+      'User registration, login, and password reset',
+      'Create and delete posts with ownership verification',
+      'SQLite database with async support',
     ],
-    technologies: 'React, Node.js, PostgreSQL, WebSockets',
+    technologies: 'FastAPI, Streamlit, SQLAlchemy, ImageKit, SQLite',
     github: 'https://github.com/alpatamerr/Social-Media-App',
   },
   {
