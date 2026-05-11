@@ -101,8 +101,6 @@ export const projects: Project[] = [
       'Image and video uploads with ImageKit CDN integration',
       'Real-time social feed displaying posts from all users',
       'Dynamic image transformations with caption overlays',
-      'User registration, login, and password reset',
-      'Create and delete posts with ownership verification',
       'SQLite database with async support',
     ],
     technologies: 'FastAPI, Streamlit, SQLAlchemy, ImageKit, SQLite',
