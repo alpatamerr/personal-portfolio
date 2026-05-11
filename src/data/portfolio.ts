@@ -90,6 +90,20 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
+    title: 'Social Media App',
+    emoji: '📱',
+    description: 'Full-featured social platform with real-time messaging, user profiles, and content sharing capabilities.',
+    features: [
+      'Real-time messaging and notifications',
+      'User authentication and profile management',
+      'Content feed with like and comment functionality',
+      'User discovery and follow system',
+      'Media upload and storage integration',
+    ],
+    technologies: 'React, Node.js, PostgreSQL, WebSockets',
+    github: 'https://github.com/alpatamerr/Social-Media-App',
+  },
+  {
     title: 'AI-Personalized Running Coach',
     emoji: '🏃',
     description: 'MSc Dissertation Project - Developed a full-stack fitness app integrating Strava API with backend services to manage authentication, run history, and generate adaptive 16-week training plans.',
@@ -116,19 +130,6 @@ export const projects: Project[] = [
     technologies: 'React, Flask, Python',
     liveDemo: 'https://my-weathertracker.netlify.app/',
     github: 'https://github.com/alpatamerr/weather_tracker',
-  },
-  {
-    title: 'Jamming',
-    emoji: '🎵',
-    description: 'Personal Project - Built music discovery application integrating Deezer API for searching 30M+ tracks.',
-    features: [
-      'Deezer API integration for music search',
-      'Drag-and-drop playlist interface with React hooks',
-      'Real-time search with debouncing',
-      'Custom playlist creation and management',
-    ],
-    technologies: 'React, Node.js',
-    github: 'https://github.com/alpatamerr/jammming-project',
   },
 ];
 
