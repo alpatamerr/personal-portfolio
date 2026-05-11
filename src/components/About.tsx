@@ -11,19 +11,19 @@ export default function About() {
         <div className="max-w-4xl mx-auto">
           <div className="prose prose-lg dark:prose-invert mb-12 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="mb-6">
-              I'm a software engineer obsessed with building systems that work reliably at scale. I spent my early career in business analysis, but I quickly realized I'd rather write code than talk about it. Now I build things that matter—from data pipelines that keep stakeholders in the loop to AI-powered applications that actually solve real problems.
+              I build software that actually works. Started my career in International Relations thinking I'd do policy work, then stumbled into tech through business analysis and realized I'd rather ship code than talk about it. Now I do both, but mostly the code part.
             </p>
 
             <p className="mb-6">
-              My background is a little unconventional: I started with International Relations, pivoted to computational analysis, and landed in software engineering. That winding path shaped how I think. I see problems through multiple lenses, which means I don't just write code—I write code that bridges what business needs and what engineers can build.
+              At Draftwise I engineered data pipelines and dashboards that moved the needle for real stakeholders. My dissertation was an AI coaching app that actually helped runners train smarter. I've shipped full-stack projects, optimized database queries, built real-time systems. The work that sticks is work that solves something tangible.
             </p>
 
             <p className="mb-6">
-              I'm fluent in the full stack: React and TypeScript on the frontend, Python and Node.js on the backend, PostgreSQL for data, and AWS for infrastructure. I've shipped production systems at Draftwise, built full-stack apps with AI integration, and I'm always looking for the next hard problem to solve.
+              I think differently because I came up through multiple disciplines. That makes me useful in messy problems where the technical and business sides need to talk to each other. I can work across the entire stack without losing the plot—React, Node, Python, PostgreSQL, the cloud infrastructure. Pick your poison, I'll build it clean.
             </p>
 
             <p>
-              Based in the UK with work authorization, I'm looking for teams that value clean code, thoughtful architecture, and shipping things that work.
+              UK based with work authorization. Looking for teams that care about writing good code and shipping fast.
             </p>
           </div>
 
