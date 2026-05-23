@@ -48,7 +48,7 @@ export default function Hero() {
               View My Work
             </button>
             <a
-              href="/ALP_ATAMER_CV.pdf"
+              href="/Alp_Atamer_CV.pdf"
               download="ALP_ATAMER_CV.pdf"
               className="px-8 py-3 bg-white hover:bg-gray-100 text-blue-900 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
             >
