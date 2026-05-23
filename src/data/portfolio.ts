@@ -26,6 +26,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Node.js', level: 80 },
       { name: 'Express.js', level: 80 },
       { name: 'Flask', level: 75 },
+      { name: 'FastAPI', level: 70 },
       { name: 'REST APIs', level: 85 },
     ],
   },
@@ -39,7 +40,9 @@ export const skillCategories: SkillCategory[] = [
     title: 'Tools & Technologies',
     skills: [
       { name: 'Git/GitHub', level: 85 },
+      { name: 'GitHub Actions', level: 70 },
       { name: 'Docker', level: 70 },
+      { name: 'AWS', level: 65 },
       { name: 'Jest', level: 65 },
       { name: 'Asana', level: 80 },
     ],
@@ -54,13 +57,13 @@ export const experiences: Experience[] = [
     period: 'May 2024 - Sep 2024',
     description: [
       'Enhanced AI-powered legal tech platform with Python workflows and React components',
-      'Contributed to Python scripts for HubSpot CRM data extraction and PostgreSQL integration',
+      'Contributed to Python scripts for HubSpot CRM data extraction and PostgreSQL integration with AWS services',
       'Built React dashboard components with real-time data updates',
       'Developed reusable components including collapsible panels and interactive charts',
       'Optimized frontend performance with lazy loading and memoization',
       'Collaborated with PM and engineering teams to translate business requirements into software solutions',
     ],
-    techStack: 'Python, React, PostgreSQL, HubSpot API',
+    techStack: 'Python, React, PostgreSQL, HubSpot API, AWS',
   },
   {
     title: 'Research Assistant, Computational Logistics & Data Analysis',
@@ -90,6 +93,20 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
+    title: 'Simple Social',
+    emoji: '📱',
+    description: 'Personal Project - FastAPI + Streamlit social media application featuring user authentication, media uploads with ImageKit CDN integration, and a real-time social feed.',
+    features: [
+      'JWT-based user authentication with FastAPI-Users',
+      'Image and video uploads with ImageKit CDN integration',
+      'Real-time social feed displaying posts from all users',
+      'Dynamic image transformations with caption overlays',
+      'SQLite database with async support',
+    ],
+    technologies: 'FastAPI, Streamlit, SQLAlchemy, ImageKit, SQLite',
+    github: 'https://github.com/alpatamerr/Social-Media-App',
+  },
+  {
     title: 'AI-Personalized Running Coach',
     emoji: '🏃',
     description: 'MSc Dissertation Project - Developed a full-stack fitness app integrating Strava API with backend services to manage authentication, run history, and generate adaptive 16-week training plans.',
@@ -116,19 +133,6 @@ export const projects: Project[] = [
     technologies: 'React, Flask, Python',
     liveDemo: 'https://my-weathertracker.netlify.app/',
     github: 'https://github.com/alpatamerr/weather_tracker',
-  },
-  {
-    title: 'Jamming',
-    emoji: '🎵',
-    description: 'Personal Project - Built music discovery application integrating Deezer API for searching 30M+ tracks.',
-    features: [
-      'Deezer API integration for music search',
-      'Drag-and-drop playlist interface with React hooks',
-      'Real-time search with debouncing',
-      'Custom playlist creation and management',
-    ],
-    technologies: 'React, Node.js',
-    github: 'https://github.com/alpatamerr/jammming-project',
   },
 ];
 
