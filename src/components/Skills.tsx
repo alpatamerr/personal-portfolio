@@ -1,15 +1,15 @@
 import { skillCategories } from '../data/portfolio';
 import { Code2, Server, Cloud, Database } from 'lucide-react';
 import {
-  SiStrava,
-  SiOpenai,
-  SiLeaflet,
-  SiHubspot,
-  SiDocusign,
-  SiApachespark,
-  SiPolars,
-  SiPalantir,
-} from 'react-icons/si';
+  siApachespark,
+  siPolars,
+  siLeaflet,
+  siBlueprint,
+  siPalantir,
+  siHubspot,
+  siStrava,
+  siJsonwebtokens,
+} from 'simple-icons/icons';
 
 function getCategoryIcon(title: string) {
   const name = title.toLowerCase();
@@ -48,40 +48,59 @@ function getDeviconClass(skillName: string): string | null {
   return null;
 }
 
-function getSimpleIcon(skillName: string): JSX.Element | null {
+function getCustomIcon(skillName: string): JSX.Element | null {
   const key = skillName.toLowerCase();
 
-  if (key === 'pyspark' || key.includes('spark')) {
-    return <SiApachespark size={16} color="#E25A1C" />;
+  const siMap: Record<string, { path: string; hex: string }> = {
+    pyspark: siApachespark,
+    polars: siPolars,
+    leaflet: siLeaflet,
+    blueprintjs: siBlueprint,
+    'palantir foundry': siPalantir,
+    hubspot: siHubspot,
+    strava: siStrava,
+    webhooks: siJsonwebtokens,
+    'json schemas': siJsonwebtokens,
+  };
+
+  let icon = siMap[key];
+
+  if (!icon) {
+    if (key.includes('spark') || key.includes('pyspark')) icon = siApachespark;
+    else if (key.includes('palantir')) icon = siPalantir;
+    else if (key.includes('hubspot')) icon = siHubspot;
+    else if (key.includes('strava')) icon = siStrava;
+    else if (key.includes('webhook')) icon = siJsonwebtokens;
+    else if (key.includes('json schema')) icon = siJsonwebtokens;
   }
-  if (key === 'polars') {
-    return <SiPolars size={16} color="#CD792C" />;
-  }
-  if (key === 'leaflet') {
-    return <SiLeaflet size={16} color="#199900" />;
-  }
-  if (key === 'blueprintjs') {
+
+  if (icon) {
     return (
-      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 0L2.4 5.6v12.8L12 24l9.6-5.6V5.6L12 0zm0 2.3l7.2 4.2v8.4L12 19.1l-7.2-4.2V6.5L12 2.3z" fill="#137CBD"/>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill={`#${icon.hex}`} aria-hidden="true">
+        <path d={icon.path} />
       </svg>
     );
   }
-  if (key === 'palantir foundry' || key.includes('palantir')) {
-    return <SiPalantir size={16} color="#101113" />;
-  }
-  if (key.includes('hubspot')) {
-    return <SiHubspot size={16} color="#FF7A59" />;
-  }
+
   if (key.includes('docusign')) {
-    return <SiDocusign size={16} color="#FFCE00" />;
+    return (
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="2" width="18" height="20" rx="2" fill="#FFCE00"/>
+        <path d="M7 14c2-3 4-5 6-5s3 2 4 4" stroke="#1B2A4E" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+        <line x1="7" y1="18" x2="17" y2="18" stroke="#1B2A4E" strokeWidth="1" opacity="0.4"/>
+      </svg>
+    );
   }
-  if (key.includes('strava')) {
-    return <SiStrava size={16} color="#FC4C02" />;
-  }
+
   if (key.includes('openai')) {
-    return <SiOpenai size={16} color="#412991" />;
+    return (
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" fill="#10A37F"/>
+        <path d="M8 12h8M12 8v8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+      </svg>
+    );
   }
+
   if (key === 'ci/cd') {
     return (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -92,6 +111,7 @@ function getSimpleIcon(skillName: string): JSX.Element | null {
       </svg>
     );
   }
+
   if (key === 'rest apis' || key.includes('rest api')) {
     return (
       <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
@@ -100,6 +120,7 @@ function getSimpleIcon(skillName: string): JSX.Element | null {
       </svg>
     );
   }
+
   if (key === 'data pipelines' || key.includes('pipeline')) {
     return (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -107,13 +128,6 @@ function getSimpleIcon(skillName: string): JSX.Element | null {
         <circle cx="20" cy="6" r="2.5" fill="#6CB6FF"/>
         <circle cx="20" cy="18" r="2.5" fill="#6CB6FF"/>
         <path d="M6.5 11L17.5 7M6.5 13L17.5 17" stroke="#6CB6FF" strokeWidth="1.5"/>
-      </svg>
-    );
-  }
-  if (key.includes('json schema') || key.includes('webhook')) {
-    return (
-      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M5 3h2v2H5v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5h2v2H5c-1.07-.27-2-.9-2-2v-4a2 2 0 0 0-2-2H0v-2h1a2 2 0 0 0 2-2V5a2 2 0 0 1 2-2zm14 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3h2z" fill="#F7DF1E"/>
       </svg>
     );
   }
@@ -149,7 +163,7 @@ export default function Skills() {
                 <div className="flex flex-wrap gap-3">
                   {category.skills.map((skill, skillIndex) => {
                     const iconClass = getDeviconClass(skill.name);
-                    const custom = getSimpleIcon(skill.name);
+                    const custom = getCustomIcon(skill.name);
                     return (
                       <span
                         key={skillIndex}
