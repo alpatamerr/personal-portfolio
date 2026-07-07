@@ -82,14 +82,16 @@ function getCustomIcon(skillName: string): JSX.Element | null {
     );
   }
 
-   if (key.includes('docusign')) {
+  if (key.includes('docusign')) {
     return (
       <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="4" y="8" width="10" height="12" rx="1" fill="#7B68EE"/>
-        <path d="M10 6h4a8 8 0 0 1 0 16h-4V6z" fill="#FF585D"/>
+        <path d="M9 1h3a8 8 0 0 1 0 16H9V1z" fill="#FF4438"/>
+        <rect x="2" y="9" width="12" height="14" fill="#4D00EC"/>
+        <rect x="9" y="9" width="5" height="8" fill="#000000"/>
       </svg>
     );
   }
+
 
 
    if (key.includes('openai')) {
