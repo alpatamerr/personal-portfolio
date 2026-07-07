@@ -82,10 +82,11 @@ function getCustomIcon(skillName: string): JSX.Element | null {
     );
   }
 
-  if (key.includes('docusign')) {
+   if (key.includes('docusign')) {
     return (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFCE00" aria-hidden="true">
-        <path d="M21.99 3.49H8.23a2 2 0 0 0-2 2v.78L2.01 2.01v19.98l4.22-4.26v.78a2 2 0 0 0 2 2h13.76a2 2 0 0 0 2-2V5.49a2 2 0 0 0-2-2zm-1 14.52H9.23V5.99h11.76v12.02z"/>
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="4" y="8" width="10" height="12" rx="1" fill="#7B68EE"/>
+        <path d="M10 6h4a8 8 0 0 1 0 16h-4V6z" fill="#FF585D"/>
       </svg>
     );
   }
