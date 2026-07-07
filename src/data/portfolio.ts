@@ -77,7 +77,7 @@ export const experiences: Experience[] = [
   },
   {
     title: 'International Relations Intern',
-    company: 'Ministry of Foreign Affairs of Turkey',
+    company: 'Ministry of Foreign Affairs',
     location: 'Ankara, Turkey',
     period: 'Jun 2022 - Jul 2022',
     description: [

@@ -1,4 +1,4 @@
-import { MapPin, Calendar, Briefcase } from 'lucide-react';
+import { MapPin, Briefcase } from 'lucide-react';
 import { experiences } from '../data/portfolio';
 
 export default function Experience() {
@@ -40,10 +40,6 @@ export default function Experience() {
                       <div className="flex items-center gap-1">
                         <MapPin size={16} />
                         {exp.location}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Calendar size={16} />
-                        {exp.period}
                       </div>
                     </div>
 
