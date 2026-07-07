@@ -99,6 +99,7 @@ export const projects: Project[] = [
       'Architected a semantic data model (13 entity types) with server-side business logic, automated threshold alerts, and full CRUD operations via TypeScript Functions.',
     ],
     technologies: 'React, TypeScript, Python, Polars, PySpark, Palantir Foundry OSDK, Leaflet, BlueprintJS',
+    liveDemo: 'https://www.youtube.com/watch?v=GIf3iSV59ms',
     github: 'https://github.com/alpatamerr/crisis-logistics-command-system',
   },
   {
