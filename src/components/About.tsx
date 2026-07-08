@@ -13,15 +13,15 @@ export default function About() {
             <p className="mb-6">
               Recent MSc Computer Science graduate from the University of Birmingham with a unique
               background in International Relations from Bilkent University. My journey into tech
-              began through a software engineering role, where I discovered a passion for
+              began through a software engineering role, where I discovered a passion for 
               solving complex problems through code.
             </p>
 
             <p className="mb-6">
               I specialize in full-stack development with React, TypeScript, Python, and PostgreSQL, 
               with hands-on experience building production-ready applications that integrate 
-              real-time APIs and data pipelines. My diverse background gives me a strong ability 
-              to bridge technical and non-technical stakeholders.
+              real-time APIs, data pipelines, and cloud infrastructure. My diverse background
+              gives me a strong ability to bridge technical and non-technical stakeholders.
             </p>
 
             <p>
