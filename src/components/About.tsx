@@ -16,7 +16,7 @@ export default function About() {
             </p>
 
             <p className="mb-6">
-              I specialize in turning complex workflows into reliable products — most recently a
+              I specialize in turning complex workflows into reliable products, most recently a
               live crisis-response prototype on Palantir Foundry that gives operations teams
               real-time situational awareness across a city. My background across software
               engineering, data analysis, and international relations helps me bridge technical and
