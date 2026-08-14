@@ -44,15 +44,8 @@ export const skillCategories: SkillCategory[] = [
       { name: 'HubSpot API', level: 75 },
       { name: 'DocuSign API', level: 70 },
       { name: 'Strava API', level: 75 },
-    ],
-  },
-  {
-    title: 'AI & LLM',
-    skills: [
       { name: 'Anthropic API', level: 85 },
       { name: 'OpenAI API', level: 85 },
-      { name: 'LLM Workflow Design', level: 85 },
-      { name: 'Vector Search', level: 80 },
     ],
   },
 ];
