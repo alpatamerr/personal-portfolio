@@ -9,22 +9,23 @@ export default function About() {
         <div className="max-w-4xl mx-auto">
           <div className="prose prose-lg dark:prose-invert mb-12 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="mb-6">
-              MSc Computer Science graduate and AI Product Engineer at an early-stage startup,
-              building LLM-powered recruiting workflows in Python, TypeScript, and React. Previously
-              shipped data pipelines and customer-facing features as a US legal-tech company software
-              engineer.
+              I'm an AI Product Engineer at an early-stage startup in London, building LLM-powered
+              recruiting workflows in Python, TypeScript, and React. Before that, I shipped data
+              pipelines and customer-facing features as a software engineer at a US legal-tech
+              company, and completed an MSc in Computer Science at the University of Birmingham.
             </p>
 
             <p className="mb-6">
-              I specialize in turning complex workflows into reliable products with Python, FastAPI,
-              React, PostgreSQL, LLM APIs, vector search, real-time integrations, and data pipelines.
-              My background across software engineering, data analysis, and international relations
-              helps me bridge technical and non-technical stakeholders.
+              I specialize in turning complex workflows into reliable products — most recently a
+              live crisis-response prototype on Palantir Foundry that gives operations teams
+              real-time situational awareness across a city. My background across software
+              engineering, data analysis, and international relations helps me bridge technical and
+              non-technical stakeholders.
             </p>
 
             <p>
               Based in Greater London, I hold a valid UK work permit and enjoy building practical AI
-              products that create measurable value for their users.
+              products that people actually use.
             </p>
           </div>
 
