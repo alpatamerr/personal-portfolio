@@ -64,17 +64,17 @@ export default function Contact() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
           <span className="inline-flex items-center gap-2 px-3 py-2 bg-gray-100 dark:bg-gray-900 rounded-full text-sm text-gray-600 dark:text-gray-300">
             <MapPin size={16} className="text-cyan-600" />
-            Based in the UK
+            Greater London, UK
           </span>
 
           <span className="inline-flex items-center gap-2 px-3 py-2 bg-gray-100 dark:bg-gray-900 rounded-full text-sm text-gray-600 dark:text-gray-300">
             <Calendar size={16} className="text-cyan-600" />
-            Available for immediate start
+            Open to new opportunities
           </span>
 
           <span className="inline-flex items-center gap-2 px-3 py-2 bg-gray-100 dark:bg-gray-900 rounded-full text-sm text-gray-600 dark:text-gray-300">
             <Globe size={16} className="text-cyan-600" />
-            Open to remote opportunities
+            UK work permit held
           </span>
         </div>
 

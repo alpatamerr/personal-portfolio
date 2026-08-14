@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, ChevronDown, Download } from 'lucide-react';
 
 const roles = [
+  'AI Product Engineer',
   'Software Engineer',
   'Full Stack Engineer',
 ];
@@ -48,7 +49,7 @@ export default function Hero() {
               View My Work
             </button>
             <a
-              href="/Alp_Atamer_CV.pdf"
+              href="/Alp_Atamer_CV copy.pdf"
               download="Alp_Atamer_CV.pdf"
               className="px-8 py-3 bg-white hover:bg-gray-100 text-blue-900 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center gap-2"
             >

@@ -1,4 +1,4 @@
-import { GraduationCap, MapPin, Calendar, Award } from 'lucide-react';
+import { GraduationCap, MapPin, Calendar, Award, Languages } from 'lucide-react';
 import { education } from '../data/portfolio';
 
 export default function Education() {
@@ -60,6 +60,28 @@ export default function Education() {
                   </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">August 2024</p>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 mt-8">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-cyan-100 dark:bg-cyan-900 p-3 rounded-lg">
+                <Languages className="text-cyan-600 dark:text-cyan-400" size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                Languages
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
+                <p className="font-semibold text-gray-900 dark:text-white">English</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Full professional proficiency</p>
+              </div>
+              <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
+                <p className="font-semibold text-gray-900 dark:text-white">Turkish</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Native</p>
               </div>
             </div>
           </div>
