@@ -61,7 +61,7 @@ export const experiences: Experience[] = [
       'Develop AI-powered recruiting workflows for company discovery, candidate sourcing, enrichment, evaluation, ranking, and reporting using Python, FastAPI, Next.js, and PostgreSQL with vector search.',
       'Improve the reliability and cost-efficiency of LLM-driven workflows by analyzing failure cases and validating outputs, and build integrations with ATS platforms and third-party data providers.',
     ],
-    techStack: 'Python, FastAPI, Next.js, PostgreSQL, LLM APIs, Vector Search, REST APIs, Webhooks',
+    techStack: 'Python, FastAPI, Next.js, PostgreSQL, Anthropic API, OpenAI API, Vector Search, REST APIs, Webhooks',
   },
   {
     title: 'Software Engineer',
