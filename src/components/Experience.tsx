@@ -31,16 +31,16 @@ export default function Experience() {
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
                       {exp.title}
                     </h3>
-                    <div className="inline-flex flex-wrap items-center gap-2 text-cyan-600 dark:text-cyan-400 font-semibold mb-3">
+                    <div className="text-cyan-600 dark:text-cyan-400 font-semibold mb-3">
                       {exp.company}
-                      <span className="inline-block whitespace-nowrap px-2 py-0.5 text-xs rounded-full bg-cyan-50 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-300 border border-cyan-100 dark:border-cyan-900">{exp.period}</span>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
                       <div className="flex items-center gap-1">
                         <MapPin size={16} />
                         {exp.location}
                       </div>
+                      <span className="inline-block whitespace-nowrap px-2 py-0.5 text-xs rounded-full bg-cyan-50 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-300 border border-cyan-100 dark:border-cyan-900">{exp.period}</span>
                     </div>
 
                     <ul className="space-y-2.5 mb-4">
