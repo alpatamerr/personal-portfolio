@@ -9,7 +9,7 @@ import {
   siHubspot,
   siStrava,
   siJsonwebtokens,
-  siAnthropic,
+  siClaudecode,
 } from 'simple-icons/icons';
 
 function getCategoryIcon(title: string) {
@@ -63,6 +63,7 @@ function getCustomIcon(skillName: string): JSX.Element | null {
     strava: siStrava,
     webhooks: siJsonwebtokens,
     'json schemas': siJsonwebtokens,
+    'claude code': siClaudecode,
   };
 
   let icon = siMap[key];
@@ -90,14 +91,6 @@ function getCustomIcon(skillName: string): JSX.Element | null {
         <path d="M9 1h3a8 8 0 0 1 0 16H9V1z" fill="#FF4438"/>
         <rect x="2" y="9" width="12" height="14" fill="#4D00EC"/>
         <rect x="9" y="9" width="5" height="8" fill="#000000"/>
-      </svg>
-    );
-  }
-
-  if (key.includes('anthropic')) {
-    return (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d={siAnthropic.path} />
       </svg>
     );
   }

@@ -29,6 +29,7 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: 'AWS (S3, RDS)', level: 75 },
       { name: 'Docker', level: 75 },
+      { name: 'Claude Code', level: 85 },
       { name: 'Palantir Foundry', level: 80 },
       { name: 'PostgreSQL', level: 85 },
       { name: 'SQLite', level: 75 },
@@ -44,7 +45,6 @@ export const skillCategories: SkillCategory[] = [
       { name: 'HubSpot API', level: 75 },
       { name: 'DocuSign API', level: 70 },
       { name: 'Strava API', level: 75 },
-      { name: 'Anthropic API', level: 85 },
       { name: 'OpenAI API', level: 85 },
     ],
   },
@@ -57,11 +57,11 @@ export const experiences: Experience[] = [
     location: 'London, UK',
     period: 'Jul 2026 - Present',
     description: [
-      'Work directly with founders and the founder team to turn hiring challenges into product decisions, owning features end-to-end from research and design through production rollout.',
-      'Develop AI-powered recruiting workflows for company discovery, candidate sourcing, enrichment, evaluation, ranking, and reporting using Python, FastAPI, Next.js, and PostgreSQL with vector search.',
+      'Work directly with customers and the founder to turn hiring challenges into product decisions, owning features end-to-end from research and design through production rollout.',
+      'Develop AI-powered recruiting workflows for company discovery, candidate sourcing, enrichment, evaluation, ranking, and reporting using Python, FastAPI, Next.js, React, and PostgreSQL with pgvector.',
       'Improve the reliability and cost-efficiency of LLM-driven workflows by analyzing failure cases and validating outputs, and build integrations with ATS platforms and third-party data providers.',
     ],
-    techStack: 'Python, FastAPI, Next.js, PostgreSQL, Claude Code, Vector Search, REST APIs, Webhooks',
+    techStack: 'Python, FastAPI, Next.js, React, PostgreSQL, Claude Code, Vector Search, REST APIs, Webhooks',
   },
   {
     title: 'Software Engineer',
@@ -72,7 +72,7 @@ export const experiences: Experience[] = [
       'Built Python data pipelines integrating the HubSpot and DocuSign APIs, using AWS S3 for automated data processing and storage.',
       'Developed React and TypeScript dashboard features, implementing PostgreSQL constraints to prevent duplicate records and improve data integrity.',
       'Investigated and resolved L3 production issues through root cause analysis, shipping Python backend fixes via code review and CI/CD.',
-      'Partnered with customer-facing teams to scope technical integrations, wrote technical documentation, and contributed to onboarding sessions helping enterprise customers adopt the platform.',
+      'Partnered with customer-facing teams and PM to scope technical integrations, wrote technical documentation, and contributed to onboarding sessions helping enterprise customers adopt the platform.',
     ],
     techStack: 'Python, React, TypeScript, PostgreSQL, HubSpot API, DocuSign API, AWS S3, CI/CD',
   },
@@ -93,7 +93,7 @@ export const experiences: Experience[] = [
     location: 'Ankara, Turkey',
     period: 'Jun 2022 - Jul 2022',
     description: [
-      'Built an internal web platform in HTML, CSS, and JavaScript improving accessibility to departmental resources, and synthesized daily geopolitical reporting into executive summaries for senior officials.',
+      'Built an internal web platform in HTML, CSS, and JavaScript improving access to 50+ departmental resources, and synthesized daily geopolitical reporting into executive summaries for senior officials.',
     ],
     techStack: 'HTML, CSS, JavaScript',
   },
