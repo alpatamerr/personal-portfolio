@@ -57,9 +57,9 @@ export const experiences: Experience[] = [
     location: 'London, UK',
     period: 'Jul 2026 - Present',
     description: [
-      'Work directly with customers and the founder to turn hiring challenges into product decisions, owning features end-to-end from research and design through production rollout.',
-      'Develop AI-powered recruiting workflows for company discovery, candidate sourcing, enrichment, evaluation, ranking, and reporting using Python, FastAPI, Next.js, React, and PostgreSQL with pgvector.',
-      'Improve the reliability and cost-efficiency of LLM-driven workflows by analyzing failure cases and validating outputs, and build integrations with ATS platforms and third-party data providers.',
+      'Work directly with customers and the founder to translate hiring challenges into product decisions, owning features end-to-end from research and design through production rollout and iteration based on customer feedback.',
+      'Develop AI-powered recruiting workflows that research, source, enrich, evaluate, and rank candidates against hiring briefs using Python, FastAPI, Next.js, React, and PostgreSQL with pgvector.',
+      'Improve the reliability, performance, and cost-efficiency of LLM-driven workflows through failure analysis and output evaluation, while building integrations with ATS platforms and third-party data providers.',
     ],
     techStack: 'Python, FastAPI, Next.js, React, PostgreSQL, Claude Code, Vector Search, REST APIs, Webhooks',
   },
