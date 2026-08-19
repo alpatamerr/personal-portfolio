@@ -107,11 +107,11 @@ export const projects: Project[] = [
   {
     title: 'Crisis Logistics Command System',
     emoji: '🚨',
-    description: 'Independent Project - Built a live crisis-response prototype on Palantir Foundry to monitor incidents, transport networks, and airborne assets with real-time situational awareness across a city.',
+    description: 'Independent Project - Built and deployed a live crisis-response prototype on Palantir Foundry to pitch for contract work, giving West London operations teams real-time situational awareness across incidents, transport networks, and airborne assets.',
     features: [
       'Designed 21 Python/PySpark data pipelines integrating 4 real-time APIs with automated 15-minute refresh cycles.',
       'Turned raw city data into operational decisions with PySpark analytics, including anomaly alerts when incidents spike above trend, peak-hour disruption forecasts, and geographic hotspot scoring.',
-      'Designed the product around operational personas, from dispatchers to shift supervisors, with role-based views, incident response workflows, route or escalate actions, and a full audit trail.',
+      'Designed the product around 4 operational personas, from dispatchers to shift supervisors, with role-based views, incident response workflows to acknowledge, reroute, or escalate, and a full audit trail.',
     ],
     technologies: 'React, TypeScript, Python, Polars, PySpark, Palantir Foundry OSDK, Leaflet, BlueprintJS',
     liveDemo: 'https://www.youtube.com/watch?v=GIf3iSV59ms',
