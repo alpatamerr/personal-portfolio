@@ -15,6 +15,8 @@ export const skillCategories: SkillCategory[] = [
     title: 'Frameworks & Libraries',
     skills: [
       { name: 'FastAPI', level: 85 },
+      { name: 'SQLAlchemy', level: 80 },
+      { name: 'Next.js', level: 85 },
       { name: 'React', level: 85 },
       { name: 'PySpark', level: 75 },
       { name: 'Polars', level: 75 },
@@ -28,24 +30,26 @@ export const skillCategories: SkillCategory[] = [
     title: 'Cloud & Tools',
     skills: [
       { name: 'AWS (S3, RDS)', level: 75 },
+      { name: 'Railway', level: 80 },
+      { name: 'Vercel', level: 80 },
       { name: 'Docker', level: 75 },
       { name: 'Claude Code', level: 85 },
       { name: 'Palantir Foundry', level: 80 },
-      { name: 'PostgreSQL', level: 85 },
-      { name: 'SQLite', level: 75 },
+      { name: 'GitHub Actions', level: 75 },
+      { name: 'PostgreSQL (pgvector)', level: 85 },
       { name: 'CI/CD', level: 70 },
     ],
   },
   {
     title: 'API & Data',
     skills: [
+      { name: 'LLM APIs (OpenAI, Anthropic, Gemini)', level: 85 },
       { name: 'REST APIs', level: 90 },
       { name: 'Webhooks', level: 80 },
       { name: 'Data Pipelines', level: 85 },
       { name: 'HubSpot API', level: 75 },
       { name: 'DocuSign API', level: 70 },
       { name: 'Strava API', level: 75 },
-      { name: 'OpenAI API', level: 85 },
     ],
   },
 ];
@@ -57,11 +61,11 @@ export const experiences: Experience[] = [
     location: 'London, UK',
     period: 'Jul 2026 - Present',
     description: [
-      'Work directly with customers and the founder to translate hiring challenges into product decisions, owning features end-to-end from research and design through production rollout and iteration based on customer feedback.',
+      'Work directly with customers and the founder as one of the first engineers, translating hiring challenges into product decisions, owning features end-to-end from research and design through production rollout and iteration based on customer feedback.',
       'Develop AI-powered recruiting workflows that research, source, enrich, evaluate, and rank candidates against hiring briefs using Python, FastAPI, Next.js, React, and PostgreSQL with pgvector.',
       'Improve the reliability, performance, and cost-efficiency of LLM-driven workflows through failure analysis and output evaluation, while building integrations with ATS platforms and third-party data providers.',
     ],
-    techStack: 'Python, FastAPI, Next.js, React, PostgreSQL, Claude Code, Vector Search, REST APIs, Webhooks',
+    techStack: 'Python, FastAPI, SQLAlchemy, Next.js, React, PostgreSQL, pgvector, Claude Code, REST APIs, Webhooks',
   },
   {
     title: 'Software Engineer',
@@ -77,7 +81,7 @@ export const experiences: Experience[] = [
     techStack: 'Python, React, TypeScript, PostgreSQL, HubSpot API, DocuSign API, AWS S3, CI/CD',
   },
   {
-    title: 'Research Assistant Data Analyst',
+    title: 'Research Assistant Computational Logistics & Data Analysis',
     company: 'Bilkent University',
     location: 'Ankara, Turkey',
     period: 'Sep 2022 - Jun 2023',
