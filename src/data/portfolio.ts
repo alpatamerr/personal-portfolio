@@ -59,7 +59,7 @@ export const experiences: Experience[] = [
     title: 'AI Product Engineer',
     company: 'Cruvo',
     location: 'London, UK',
-    period: 'Jul 2026 - Present',
+    period: 'Aug 2026 - Present',
     description: [
       'Work directly with customers and the founder as one of the first engineers, translating hiring challenges into product decisions, owning features end-to-end from research and design through production rollout and iteration based on customer feedback.',
       'Develop AI-powered recruiting workflows that research, source, enrich, evaluate, and rank candidates against hiring briefs using Python, FastAPI, Next.js, React, and PostgreSQL with pgvector.',
