@@ -1,5 +1,5 @@
 import { skillCategories } from '../data/portfolio';
-import { Code2, Server, Cloud, Database, BrainCircuit } from 'lucide-react';
+import { Code2, Server, Cloud, Database, BrainCircuit, Network } from 'lucide-react';
 import {
   siApachespark,
   siPolars,
@@ -7,9 +7,12 @@ import {
   siBlueprint,
   siPalantir,
   siHubspot,
-  siStrava,
-  siJsonwebtokens,
   siClaudecode,
+  siRailway,
+  siVercel,
+  siGithubactions,
+  siSqlalchemy,
+  siNextdotjs,
 } from 'simple-icons/icons';
 
 function getCategoryIcon(title: string) {
@@ -60,11 +63,22 @@ function getCustomIcon(skillName: string): JSX.Element | null {
     blueprintjs: siBlueprint,
     'palantir foundry': siPalantir,
     hubspot: siHubspot,
-    strava: siStrava,
-    webhooks: siJsonwebtokens,
-    'json schemas': siJsonwebtokens,
     'claude code': siClaudecode,
+    railway: siRailway,
+    vercel: siVercel,
+    'github actions': siGithubactions,
+    sqlalchemy: siSqlalchemy,
+    'next.js': siNextdotjs,
   };
+
+  // Generic icon for API / integration / pipeline chips without a brand logo
+  const genericKeys = ['rest apis', 'webhooks', 'data pipelines', 'ci/cd', 'strava api'];
+  if (genericKeys.includes(key) || key.startsWith('llm api')) {
+    return <Network size={16} className="text-cyan-600 dark:text-cyan-400" aria-hidden="true" />;
+  }
+
+  // Brand marks that are black: use currentColor so they stay visible in dark mode
+  const monochrome = new Set(['railway', 'vercel', 'next.js']);
 
   let icon = siMap[key];
 
@@ -72,14 +86,12 @@ function getCustomIcon(skillName: string): JSX.Element | null {
     if (key.includes('spark') || key.includes('pyspark')) icon = siApachespark;
     else if (key.includes('palantir')) icon = siPalantir;
     else if (key.includes('hubspot')) icon = siHubspot;
-    else if (key.includes('strava')) icon = siStrava;
-    else if (key.includes('webhook')) icon = siJsonwebtokens;
-    else if (key.includes('json schema')) icon = siJsonwebtokens;
   }
 
   if (icon) {
+    const fill = monochrome.has(key) ? 'currentColor' : `#${icon.hex}`;
     return (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill={`#${icon.hex}`} aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill={fill} aria-hidden="true">
         <path d={icon.path} />
       </svg>
     );
@@ -95,14 +107,6 @@ function getCustomIcon(skillName: string): JSX.Element | null {
     );
   }
 
-  if (key.includes('openai')) {
-    return (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="#412991" aria-hidden="true">
-        <path d="M22.28 9.82a5.98 5.98 0 0 0-.51-4.91 6.05 6.05 0 0 0-6.52-2.9A6.07 6.07 0 0 0 4.98 4.18a5.98 5.98 0 0 0-4 2.9 6.05 6.05 0 0 0 .74 7.1 5.98 5.98 0 0 0 .51 4.91 6.05 6.05 0 0 0 6.52 2.9A5.98 5.98 0 0 0 13.26 24a6.06 6.06 0 0 0 5.77-4.21 5.99 5.99 0 0 0 4-2.9 6.06 6.06 0 0 0-.75-7.07zM13.26 22.43a4.48 4.48 0 0 1-2.88-1.04l.14-.08 4.78-2.76a.77.77 0 0 0 .39-.68v-6.74l2.02 1.17a.07.07 0 0 1 .04.05v5.58a4.5 4.5 0 0 1-4.49 4.5zM3.6 18.3a4.47 4.47 0 0 1-.54-3.01l.14.09 4.78 2.76a.77.77 0 0 0 .78 0l5.84-3.37v2.33a.07.07 0 0 1-.03.06l-4.83 2.79a4.5 4.5 0 0 1-6.14-1.65zM2.34 7.9a4.49 4.49 0 0 1 2.37-1.97v5.68a.77.77 0 0 0 .39.68l5.81 3.35-2.02 1.17a.07.07 0 0 1-.07 0L4 14.03a4.5 4.5 0 0 1-1.66-6.13zm16.6 3.86l-5.84-3.37 2.02-1.16a.07.07 0 0 1 .07 0l4.83 2.79a4.5 4.5 0 0 1-.68 8.1V12.44a.77.77 0 0 0-.4-.68zM20.95 8.9l-.14-.09-4.78-2.78a.77.77 0 0 0-.78 0l-5.84 3.37V7.07a.07.07 0 0 1 .03-.06l4.83-2.79a4.5 4.5 0 0 1 6.68 4.66zM8.3 12.86l-2.02-1.16a.07.07 0 0 1-.04-.06V6.07a4.5 4.5 0 0 1 7.38-3.46l-.14.08-4.78 2.76a.77.77 0 0 0-.39.68l-.01 6.73zm1.1-2.37l2.6-1.5 2.6 1.5v3l-2.6 1.5-2.6-1.5v-3z"/>
-      </svg>
-    );
-  }
-
   if (key.includes('llm workflow') || key.includes('workflow')) {
     return (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -110,50 +114,6 @@ function getCustomIcon(skillName: string): JSX.Element | null {
         <rect x="15" y="4" width="6" height="5" rx="1" fill="#6366F1"/>
         <rect x="9" y="15" width="6" height="5" rx="1" fill="#6366F1"/>
         <path d="M6 9v3a2 2 0 0 0 2 2h2M18 9v3a2 2 0 0 1-2 2h-2" stroke="#6366F1" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    );
-  }
-
-  if (key.includes('vector search') || key.includes('vector')) {
-    return (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="5" cy="5" r="2" fill="#10B981"/>
-        <circle cx="19" cy="5" r="2" fill="#10B981"/>
-        <circle cx="12" cy="12" r="2" fill="#10B981"/>
-        <circle cx="5" cy="19" r="2" fill="#10B981"/>
-        <circle cx="19" cy="19" r="2" fill="#10B981"/>
-        <path d="M6.5 6.5l4 4M17.5 6.5l-4 4M10.5 13.5l-4 4M13.5 13.5l4 4" stroke="#10B981" strokeWidth="1.2"/>
-      </svg>
-    );
-  }
-
-  if (key === 'ci/cd') {
-    return (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M4 12c0-4.4 3.6-8 8-8 2.8 0 5.2 1.4 6.6 3.5" stroke="#2DA44E" strokeWidth="2.5" strokeLinecap="round"/>
-        <path d="M20 12c0 4.4-3.6 8-8 8-2.8 0-5.2-1.4-6.6-3.5" stroke="#2DA44E" strokeWidth="2.5" strokeLinecap="round"/>
-        <path d="M16.5 3.5L19 7.5l-4 .5" fill="#2DA44E"/>
-        <path d="M7.5 20.5L5 16.5l4-.5" fill="#2DA44E"/>
-      </svg>
-    );
-  }
-
-  if (key === 'rest apis' || key.includes('rest api')) {
-    return (
-      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 8h12M4 12h16M4 16h10" stroke="#FF6C37" strokeWidth="2.5" strokeLinecap="round"/>
-        <circle cx="20" cy="8" r="2" fill="#FF6C37"/>
-      </svg>
-    );
-  }
-
-  if (key === 'data pipelines' || key.includes('pipeline')) {
-    return (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="4" cy="12" r="2.5" fill="#6CB6FF"/>
-        <circle cx="20" cy="6" r="2.5" fill="#6CB6FF"/>
-        <circle cx="20" cy="18" r="2.5" fill="#6CB6FF"/>
-        <path d="M6.5 11L17.5 7M6.5 13L17.5 17" stroke="#6CB6FF" strokeWidth="1.5"/>
       </svg>
     );
   }
