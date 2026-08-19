@@ -1,5 +1,5 @@
 import { skillCategories } from '../data/portfolio';
-import { Code2, Server, Cloud, Database, BrainCircuit, Network } from 'lucide-react';
+import { Code2, Server, Cloud, Database, BrainCircuit, Sparkles, Globe, Webhook, Workflow, GitBranch } from 'lucide-react';
 import {
   siApachespark,
   siPolars,
@@ -7,6 +7,7 @@ import {
   siBlueprint,
   siPalantir,
   siHubspot,
+  siStrava,
   siClaudecode,
   siRailway,
   siVercel,
@@ -63,6 +64,8 @@ function getCustomIcon(skillName: string): JSX.Element | null {
     blueprintjs: siBlueprint,
     'palantir foundry': siPalantir,
     hubspot: siHubspot,
+    strava: siStrava,
+    'strava api': siStrava,
     'claude code': siClaudecode,
     railway: siRailway,
     vercel: siVercel,
@@ -71,11 +74,13 @@ function getCustomIcon(skillName: string): JSX.Element | null {
     'next.js': siNextdotjs,
   };
 
-  // Generic icon for API / integration / pipeline chips without a brand logo
-  const genericKeys = ['rest apis', 'webhooks', 'data pipelines', 'ci/cd', 'strava api'];
-  if (genericKeys.includes(key) || key.startsWith('llm api')) {
-    return <Network size={16} className="text-cyan-600 dark:text-cyan-400" aria-hidden="true" />;
-  }
+  // Lucide icons for chips without a brand logo
+  const lucideCls = 'text-cyan-600 dark:text-cyan-400';
+  if (key.startsWith('llm api')) return <Sparkles size={16} className={lucideCls} aria-hidden="true" />;
+  if (key === 'rest apis') return <Globe size={16} className={lucideCls} aria-hidden="true" />;
+  if (key === 'webhooks') return <Webhook size={16} className={lucideCls} aria-hidden="true" />;
+  if (key === 'data pipelines') return <Workflow size={16} className={lucideCls} aria-hidden="true" />;
+  if (key === 'ci/cd') return <GitBranch size={16} className={lucideCls} aria-hidden="true" />;
 
   // Brand marks that are black: use currentColor so they stay visible in dark mode
   const monochrome = new Set(['railway', 'vercel', 'next.js']);
@@ -86,6 +91,7 @@ function getCustomIcon(skillName: string): JSX.Element | null {
     if (key.includes('spark') || key.includes('pyspark')) icon = siApachespark;
     else if (key.includes('palantir')) icon = siPalantir;
     else if (key.includes('hubspot')) icon = siHubspot;
+    else if (key.includes('strava')) icon = siStrava;
   }
 
   if (icon) {
