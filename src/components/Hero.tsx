@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Github, Linkedin, Mail, ChevronDown, Download } from 'lucide-react';
 
 const roles = [
-  'AI Product Engineer',
+  'Founding Engineer',
   'Software Engineer',
   'Full Stack Engineer',
 ];
