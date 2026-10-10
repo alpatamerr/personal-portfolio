@@ -9,7 +9,7 @@ export default function About() {
         <div className="max-w-4xl mx-auto">
           <div className="prose prose-lg dark:prose-invert mb-12 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="mb-6">
-              I'm an AI Product Engineer at an early-stage startup in London, building LLM-powered
+              I'm a Founding Engineer at an early-stage startup in London, building LLM-powered
               recruiting workflows in Python, FastAPI, Next.js, and PostgreSQL. Before that, I shipped data
               pipelines and customer-facing features as a software engineer at a US legal-tech
               company, and completed an MSc in Computer Science at the University of Birmingham.

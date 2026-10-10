@@ -56,14 +56,15 @@ export const skillCategories: SkillCategory[] = [
 
 export const experiences: Experience[] = [
   {
-    title: 'AI Product Engineer',
+    title: 'Founding Engineer',
     company: 'Cruvo',
     location: 'London, UK',
     period: 'Aug 2026 - Present',
     description: [
-      'Work directly with customers and the founder as one of the first engineers, translating hiring challenges into product decisions, owning features end-to-end from research and design through production rollout and iteration based on customer feedback.',
-      'Develop AI-powered recruiting workflows that research, source, enrich, evaluate, and rank candidates against hiring briefs using Python, FastAPI, Next.js, React, and PostgreSQL with pgvector.',
-      'Improve the reliability, performance, and cost-efficiency of LLM-driven workflows through failure analysis and output evaluation, while building integrations with ATS platforms and third-party data providers.',
+      'Joined as the second hire, working directly with customers and the founder to translate hiring challenges into product decisions as well as own features end-to-end from research and design through production rollout and iteration based on customer feedback.',
+      'Develop AI-powered recruiting workflows that research, source, enrich, evaluate, and rank candidates against hiring briefs while building integrations with ATS platforms and third-party data providers.',
+      'Built CI/CD and spend controls for the LLM workflows, shipping scoring changes through automated regression tests and A/B evaluation, halving over-rated recommendations and cutting cost-forecast error by up to 60x.',
+      "Built autonomous AI agents that run the company's operations under human-in-the-loop approval gates, from executing the candidate sourcing pipeline to triaging the engineering backlog and auditing the sales pipeline, cutting agent run costs by 74%.",
     ],
     techStack: 'Python, FastAPI, SQLAlchemy, Next.js, React, PostgreSQL, pgvector, Claude Code, REST APIs, Webhooks',
   },
